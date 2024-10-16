@@ -13,7 +13,8 @@ describe('Bank app', () => {
   const depositSuccessMessage = 'Deposit Successful';
   const withdrawlSuccessMessage = 'Transaction successful';
 
-  beforeEach(() => cy.visit(''));
+  beforeEach(() => cy
+    .visit('baseUrl'));
   it('should allow wizzard to login and view transactions', () => {
     cy.contains('.btn', 'Customer Login').click();
     cy.get('#userSelect').select(fullName);
@@ -33,7 +34,7 @@ describe('Bank app', () => {
           .should('contain', currency);
         cy.contains('.btn', 'Deposit ').click();
         cy.get('[placeholder="amount"]').type(`${depositAmount}{enter}`);
-        cy.contains('.error', depositSuccessMessage)
+        cy.contains('.ng-binding', depositSuccessMessage)
           .should('exist').and('be.visible');
         cy.get('.borderM > :nth-child(3)')
           .should('contain', balanceAfterDeposit);
@@ -47,7 +48,7 @@ describe('Bank app', () => {
           .type(withdrawAmount);
         cy.get('[placeholder="amount"]')
           .should('have.value', withdrawAmount).type('{enter}');
-        cy.contains('.error', withdrawlSuccessMessage)
+        cy.contains('.ng-binding', withdrawlSuccessMessage)
           .should('exist').and('be.visible');
         cy.get('.borderM > :nth-child(3)')
           .should('contain', balanceAfterWithdrawl);

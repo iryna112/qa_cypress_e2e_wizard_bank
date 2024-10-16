@@ -14,7 +14,7 @@ describe('Bank app', () => {
   const withdrawlSuccessMessage = 'Transaction successful';
 
   beforeEach(() => cy.visit(''));
-  it('should allow wizzard to loin and view transactions', () => {
+  it('should allow wizzard to login and view transactions', () => {
     cy.contains('.btn', 'Customer Login').click();
     cy.get('#userSelect').select(fullName);
     cy.get('button[type="submit"]').click();
@@ -29,7 +29,7 @@ describe('Bank app', () => {
         const balanceAfterWithdrawl = (+balanceAfterDeposit - +withdrawAmount)
           .toString();
 
-        cy.get('.borderM > :nth-child(3) > :nth-child(3')
+        cy.get('.borderM > :nth-child(3) > :nth-child(3)')
           .should('contain', currency);
         cy.contains('.btn', 'Deposit ').click();
         cy.get('[placeholder="amount"]').type(`${depositAmount}{enter}`);
